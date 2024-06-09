@@ -22,7 +22,7 @@ async def on_ready():
 
 async def discordconnectionhandler(user: discord.User):
     user.create_dm()
-    await user.send()
+    #await user.send()
     
 
 async def discordconnectionstarter(message: discord.Message):
