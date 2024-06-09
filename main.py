@@ -21,7 +21,6 @@ async def on_ready():
     print(f'We have logged in as {bot.user}')
 
 async def discordconnectionhandler(user: discord.User):
-    user.create_dm()
     #await user.send()
     
 
@@ -32,9 +31,9 @@ async def discordconnectionstarter(message: discord.Message):
     except:
         print("Starting New connection")
         xuser = None
-        connectionsdm[message.author.id] = {"auth":False,"xboxuser":xuser,"authid":random.randint(10000000,99999999),"stats":{}}
+        dmdiscord = bot.get_user(message.author.id).create_dm()
+        connectionsdm[message.author.id] = {"auth":False,"xboxuser":xuser,"authid":random.randint(10000000,99999999),"dm":dmdiscord,"stats":{}}
         print(connectionsdm[message.author.id])
-        bot.get_user(message.author.id).send("Your connection has been requested")
         
     else:
         await discordconnectionhandler(bot.get_user(message.author.id))
